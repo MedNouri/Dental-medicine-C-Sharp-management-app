@@ -1,0 +1,11 @@
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\bin\Debug\MohamedNouriProject.exe.config
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\bin\Debug\MohamedNouriProject.exe
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\bin\Debug\MohamedNouriProject.pdb
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.csprojAssemblyReference.cache
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.Form1.resources
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.Properties.Resources.resources
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.csproj.GenerateResource.cache
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.csproj.CoreCompileInputs.cache
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.exe
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.pdb
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.Form2.resources
