@@ -52,25 +52,25 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <None Include="Login">
       <SubType>Form</SubType>
+    </None>
+    <Compile Include="AddAnewClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAnewClient.Designer.cs">
+      <DependentUpon>AddAnewClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+      <DependentUpon>Login</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AddAnewClient.resx">
+      <DependentUpon>AddAnewClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Login</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_user_male2_172626.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2205171.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

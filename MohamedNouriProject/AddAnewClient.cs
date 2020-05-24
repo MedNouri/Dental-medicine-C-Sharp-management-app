@@ -10,14 +10,24 @@ using System.Windows.Forms;
 
 namespace MohamedNouriProject
 {
-    public partial class Form2 : Form
+    public partial class AddAnewClient : Form
     {
-        public Form2()
+        public AddAnewClient()
         {
             InitializeComponent();
         }
 
-        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

@@ -9,3 +9,4 @@ C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherc
 C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.exe
 C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.pdb
 C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.Form2.resources
+C:\Users\moham\OneDrive - Ministere de l'Enseignement Superieur et de la Recherche Scientifique\MohamedNouriProject\MohamedNouriProject\obj\Debug\MohamedNouriProject.AddAnewClient.resources

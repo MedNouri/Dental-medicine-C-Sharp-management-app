@@ -63,6 +63,16 @@ namespace MohamedNouriProject.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2205171 {
+            get {
+                object obj = ResourceManager.GetObject("2205171", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_user_male2_172626 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_user_male2_172626", resourceCulture);
