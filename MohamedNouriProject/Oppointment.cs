@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using MohamedNouriProject.Resources;
-
+using Excel = Microsoft.Office.Interop.Excel;
 namespace MohamedNouriProject
 {
     public partial class Oppointment : UserControl
@@ -15,33 +15,65 @@ namespace MohamedNouriProject
         SqlDataAdapter adapt;
         DataTable dt;
 
+
+
+
+        public static Boolean EditorAttribute = false;
+        public static string iduser = "";
+        public static string CodeClientS = "";
+
+        
+
         public Oppointment()
         {
 
 
 
             InitializeComponent();
+
+
+            BindGrid("");
+
+
+
+            DataGridViewButtonColumn bcol = new DataGridViewButtonColumn();
+            bcol.HeaderText = "Supprimer";
+            bcol.Text = "Supprimer";
+            bcol.Name = "Supprimer";
+            bcol.UseColumnTextForButtonValue = true;
+            bcol.DataPropertyName = "lnkColumn";
+      
+
+
+
+            DataGridViewButtonColumn MD = new DataGridViewButtonColumn();
+            MD.HeaderText = "Modfier";
+            MD.Text = "Modfier";
+            MD.DataPropertyName = "lnkColumn";
+            MD.Name = "Modfier";
+            MD.UseColumnTextForButtonValue = true;
+
+
+
+            DataGridViewButtonColumn regler = new DataGridViewButtonColumn();
+            regler.HeaderText = "régler";
+            regler.Text = "régler";
+            regler.DataPropertyName = "lnkColumn";
+            regler.Name = "régler";
+            regler.UseColumnTextForButtonValue = true;
+
+            dataGridView1.Columns.Add(regler);
+            dataGridView1.Columns.Add(MD);
+            dataGridView1.Columns.Add(bcol);
+
+
+
+
+
+
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            BindGrid("SELECT CodeRDV,Name,LastName,Time,Comments FROM RDV  INNER JOIN  " +
-               "Client ON  RDV.ClientID = Client.CodeClient  ORDER BY RDV.DateRDV , RDV.Time ");
 
-            DataGridViewImageColumn Editlink = new DataGridViewImageColumn();
-         //   Editlink.UseColumnTextForLinkValue = true;
-            Editlink.HeaderText = "Edit";
-            Editlink.DataPropertyName = "lnkColumn";
-            Editlink.Image = new Bitmap(SystemIcons.Exclamation.ToBitmap(), 8, 8);
-            //  Editlink.Text = "Edit";
-            dataGridView1.Columns.Add(Editlink);
 
-            DataGridViewImageColumn Deletelink = new DataGridViewImageColumn();
-          //  Deletelink.UseColumnTextForLinkValue = true;
-            Deletelink.HeaderText = "delete";
-            Deletelink.DataPropertyName = "lnkColumn";
-            Deletelink.Image = new Bitmap(SystemIcons.Application.ToBitmap(), 8, 8);
-            // Deletelink.Text = "Delete";
-            dataGridView1.Columns.Add(Deletelink);
-
- 
         }
 
 
@@ -87,35 +119,24 @@ namespace MohamedNouriProject
         {
 
             AddAnOppointment fr1 = new AddAnOppointment();
-            fr1.Update = true;
-            fr1.ID = ID;
+           
 
 
             fr1.Show();
 
         }
+        private void Reg_Click(string ID)
+        {
 
+            AddIntervontion fr1 = new AddIntervontion();
+         
+
+            fr1.Show();
+
+        }
         void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            return;
-            if (e.RowIndex < 0)
-                return;
-
-
-          
-            //I supposed your button column is at index 0
-            if (e.ColumnIndex == 5)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = 20;
-                var h = 20;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.iconfinder_user_male2_172626, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
+        
         }
 
         private void Oppointment_Load(object sender, EventArgs e)
@@ -127,36 +148,62 @@ namespace MohamedNouriProject
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string index = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-         
-            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Edit")
+            if (e.RowIndex >= 0)
             {
 
-            Edit_Click(index);
+
+                int orderno = 0;
+                Int32.TryParse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(), out orderno);
+                
+
+
+                if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Modfier")
+            {
+                string index = dataGridView1.Rows[e.RowIndex].Cells["CodeRDV"].Value.ToString();
+                    EditorAttribute = true;
+                iduser = index;
+
+                Edit_Click(index);
              
             }
 
 
-            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "delete")
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Supprimer")
             {
-                
-           
+                string index = dataGridView1.Rows[e.RowIndex].Cells["CodeRDV"].Value.ToString();
+                     
+                  
+                    Delete_Click(index);
+            }
 
-                Delete_Click(index);
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "régler")
+            {
+                    EditorAttribute = true;
+               
+                    string id = dataGridView1.Rows[e.RowIndex].Cells["CodeRDV"].Value.ToString();
+                    iduser = id;
+                    string code = dataGridView1.Rows[e.RowIndex].Cells["CodeClient"].Value.ToString();
+                    CodeClientS = code;
+
+                    Reg_Click(CodeClientS);
             }
 
 
-
+            }
 
 
 
         }
         private void BindGrid(String query)
         {
-
+           // this.dataGridView1.DataSource = null;
+           //  this.dataGridView1.Rows.Clear();
+      
+            //ORDER BY RDV.DateRDV , RDV.Time 
             using (SqlConnection con = new SqlConnection(connetionString))
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlCommand cmd = new SqlCommand("SELECT CodeRDV, Client.CodeClient  , Name, LastName, Time, Comments  FROM RDV  INNER JOIN  " +
+               "Client ON  RDV.ClientID = Client.CodeClient    "+ query, con))
                 {
                     cmd.CommandType = CommandType.Text;
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -164,12 +211,11 @@ namespace MohamedNouriProject
                         using (DataTable dt = new DataTable())
                         {
                             sda.Fill(dt);
-
-                            //Set AutoGenerateColumns False
-
                             dataGridView1.DataSource = dt;
+                          
+                        
+                            totlaNumbre.Text = dt.Rows.Count.ToString();
 
-                             
 
                         }
                     }
@@ -189,8 +235,7 @@ namespace MohamedNouriProject
             //  SELECT* FROM RDV ,Client Where RDV.ClientID = Client.CodeClient AND RDV.CodeRDV like '#replace#%
 
 
-            String query = "SELECT * FROM RDV  INNER JOIN  " +
-                "Client ON  RDV.ClientID = Client.CodeClient   Where  RDV.CodeRDV like '#replace#%'";
+            String query = "RDV.CodeRDV like '#replace#%'";
             var result = query.Replace("#replace#", CodeClient.Text);
 
             BindGrid(result);
@@ -201,7 +246,7 @@ namespace MohamedNouriProject
 
         {
 
-            String query = "SELECT * FROM RDV INNER JOIN Client ON  RDV.ClientID = Client.CodeClient   Where  Client.Name like '#replace# %' ";
+            String query = " Client.Name like '#replace# %' ";
 
 
             var result = query.Replace("#replace#", comments.Text);
@@ -222,18 +267,14 @@ namespace MohamedNouriProject
 
             
 
-            return;
+          
             foreach (DataGridViewRow Myrow in dataGridView1.Rows)
 
             {
-
-                return;
+ 
                 String valur = Myrow.Cells[1].Value.ToString();
-                DateTime d1 = DateTime.Parse(valur);
-                DateTime d2 = new DateTime();
 
-                int res = DateTime.Compare(d1, d2);
-                if (res > 0)
+                if (valur.Length > 1)
                 {
                     Myrow.DefaultCellStyle.BackColor = Color.AliceBlue;
                 }
@@ -253,7 +294,7 @@ namespace MohamedNouriProject
         {
 
             DateTime dt = this.dateTimePicker1.Value.Date;
-            String query = "SELECT * FROM RDV INNER JOIN Client ON  RDV.ClientID = Client.CodeClient   Where RDV.DateRDV  = '#replace#' ";
+            String query = "RDV.DateRDV  = '#replace#' ";
 
 
             var result = query.Replace("#replace#", dt.ToString());
@@ -268,7 +309,7 @@ namespace MohamedNouriProject
         private void hommeRadio_CheckedChanged(object sender, EventArgs e)
         {
 
-            String query = "SELECT * FROM RDV INNER JOIN Client ON  RDV.ClientID = Client.CodeClient   Where  Client.Sexe Like 'Homme%' ";
+            String query = "Client.Sexe Like 'Homme%' ";
 
 
 
@@ -278,7 +319,7 @@ namespace MohamedNouriProject
 
         private void radioFemme_CheckedChanged(object sender, EventArgs e)
         {
-            String query = "SELECT * FROM RDV INNER JOIN Client ON  RDV.ClientID = Client.CodeClient   Where  Client.Sexe Like 'Fomme%' ";
+            String query = "Client.Sexe Like 'Femme%' ";
 
 
 
@@ -348,7 +389,45 @@ namespace MohamedNouriProject
 
         }
 
-        private void exporter_Click(object sender, EventArgs e)
+ 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+        }
+
+
+
+
+        private void copyAlltoClipboard()
+        {
+
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BindGrid("");
+        }
+
+        private void totlaNumbre_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,41 +1,58 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data;
-
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.SqlClient;
 namespace MohamedNouriProject
 {
     public partial class ClientList : UserControl
     {
+
+
+        public static  Boolean EditorAttribute = false;
+        public static  string iduser = "";
         public ClientList()
         {
             InitializeComponent();
             Console.WriteLine("Hello there");
             //   dataGridView1.Update();
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            BindGrid();
+    
+            BindGrid("");
             DataGridViewButtonColumn bcol = new DataGridViewButtonColumn();
-            bcol.HeaderText = "Button Column ";
-            bcol.Text = "Deleye";
-            bcol.Name = "btnClickMe";
+            bcol.HeaderText = "Supprimer";
+            bcol.Text = "Supprimer";
+            bcol.Name = "Supprimer";
             bcol.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(bcol);
+            bcol.DataPropertyName = "lnkColumn";
+            dataGridView2.Columns.Add(bcol);
 
 
-            DataGridViewButtonColumn Ebcol = new DataGridViewButtonColumn();
-            Ebcol.HeaderText = "Button EDIT ";
-            Ebcol.Text = "Click Me";
-            Ebcol.Name = "EDIT";
-            Ebcol.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(Ebcol);
-        }
+
+            DataGridViewButtonColumn MD = new DataGridViewButtonColumn();
+            MD.HeaderText = "Modfier";
+            MD.Text = "Modfier";
+            MD.DataPropertyName = "lnkColumn";
+            MD.Name = "Modfier";
+            MD.UseColumnTextForButtonValue = true;
      
-        private void BindGrid()
+            dataGridView2.Columns.Add(MD);
+
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
+        }
+
+
+        private String connetionString = @"Data Source=DESKTOP-PITV65G;Initial Catalog=dentaldoctor;integrated security=sspi";
+
+
+
+        private void BindGrid(String query)
         {
-              String connetionString = @"Data Source=DESKTOP-PITV65G;Initial Catalog=dentaldoctor;integrated security=sspi";
+
             using (SqlConnection con = new SqlConnection(connetionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Client", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Client  " + query  , con))
                 {
                     cmd.CommandType = CommandType.Text;
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -45,95 +62,173 @@ namespace MohamedNouriProject
                             sda.Fill(dt);
 
                             //Set AutoGenerateColumns False
-                            dataGridView2.AutoGenerateColumns = false;
-
-                            //Set Columns Count
-                            dataGridView2.ColumnCount = 4;
-
-                            //Add Columns
-
-                            dataGridView2.Columns[0].HeaderText = "CodeClient";
-                            dataGridView2.Columns[0].Name = "CodeClient";
-                            dataGridView2.Columns[0].DataPropertyName = "CodeClient";
-
-
-                            dataGridView2.Columns[1].Name = "LastName";
-                            dataGridView2.Columns[1].HeaderText = "Customer Id";
-                            dataGridView2.Columns[1].DataPropertyName = "LastName";
-
-
-
-                            dataGridView2.Columns[2].Name = "Email";
-                            dataGridView2.Columns[2].HeaderText = "Email";
-                            dataGridView2.Columns[2].DataPropertyName = "Email";
-
-
-                            dataGridView2.Columns[3].Name = "TelNumber";
-                            dataGridView2.Columns[3].HeaderText = "TelNumber";
-                            dataGridView2.Columns[3].DataPropertyName = "TelNumber";
-
-
-
-
-
-
+                            totlaNumbre.Text = dt.Rows.Count.ToString();
 
                             dataGridView2.DataSource = dt;
+
+
+
                         }
                     }
                 }
             }
         }
 
+ 
 
 
-        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+
+        private void Delete_Click(string ID)
         {
-        
-        }
+            DialogResult dr = MessageBox.Show("Êtes-vous sûr de vouloir supprimer " + ID, "Supprimer ", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            String ID  = dataGridView1.Rows[e.RowIndex].Cells["CodeClient"].Value.ToString();
-            String nom = dataGridView1.Rows[e.RowIndex].Cells["LastName"].Value.ToString();
-         
-            if (e.ColumnIndex == 5)
+
+
+            if (dr == DialogResult.Yes)
             {
+                //
 
-                DeleteCleint(ID ,nom);
-                //StateMents you Want to execute to Get Data 
+                String query = "DELETE FROM Client WHERE CodeClient =" + ID;
+                SqlConnection con = new SqlConnection(connetionString);
+
+                SqlCommand sqlcom = new SqlCommand(query, con);
+
+                con.Open();
+
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("delete successful");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                con.Close();
+
+
             }
 
+
+
         }
+ 
+     
 
 
-
-
-
-        private void DeleteCleint( String ID,String name)
+        private void button2_Click(object sender, EventArgs e)
         {
-            
-                DialogResult dr = MessageBox.Show(name, "Want something else?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-
-                if (dr == DialogResult.Yes)
-                {
-                    //
-                }
-                else if (dr == DialogResult.Cancel)
-                {
-                    //
-                }
-       
-
-
+            BindGrid("");
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void comments_TextChanged(object sender, EventArgs e)
+        {
+            String query = " Where  Client.Name like '#replace#%' OR  Client.LastName like '#replace#%' ";
+
+
+            var result = query.Replace("#replace#", nomprenom.Text);
+
+            BindGrid(result);
+        }
+
+        private void CodeClient_TextChanged(object sender, EventArgs e)
+        {
+            String query = " Where  Client.CodeClient like '#replace#%'  ";
+
+
+            var result = query.Replace("#replace#", CodeClient.Text);
+
+            BindGrid(result);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            String query = " Where  Client.DateOfBirth = '" + dateTimePicker1.Value + "'";
+            BindGrid(query);
+        }
+
+        private void hommeRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            String query = " Where  Client.Sexe = 'Homme' ";
+
+ 
+
+            BindGrid(query);
+        }
+
+        private void radioFemme_CheckedChanged(object sender, EventArgs e)
+        {
+            String query = " Where  Client.Sexe = 'Femme' ";
+
+
+
+            BindGrid(query);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+        }
+
+
+
+
+        private void copyAlltoClipboard()
         {
 
+            dataGridView2.RowHeadersVisible = false;
+            dataGridView2.SelectAll();
+            DataObject dataObj = dataGridView2.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
         }
 
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+          
+                string index = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+                if (dataGridView2.Columns[e.ColumnIndex].HeaderText == "Modfier")
+                {
+
+
+                AddAnewClient addAnewClient = new AddAnewClient();
+
+                EditorAttribute = true;
+             iduser = index;
+        addAnewClient.Show();
+
+
+                }
+
+
+                if (dataGridView2.Columns[e.ColumnIndex].HeaderText == "Supprimer")
+                {
+
+
+
+                    Delete_Click(index);
+                }
+
+
+
+
+
+
+            }
+
+        private void totlaNumbre_Click(object sender, EventArgs e)
         {
 
         }

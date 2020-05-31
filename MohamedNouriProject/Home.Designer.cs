@@ -83,13 +83,13 @@
             this.addANewClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addARDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.affichageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeDesRendezVousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outilsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.rDVTableAdapter = new MohamedNouriProject.dentaldoctorDataSetTableAdapters.RDVTableAdapter();
-            this.addDentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rootPanel.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -536,7 +536,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panel3.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel3.Controls.Add(this.tableLayoutPanel9);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.tableLayoutPanel1);
@@ -756,7 +756,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel1.Controls.Add(this.userName);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(198, 24);
@@ -790,22 +790,29 @@
             // addANewClientToolStripMenuItem
             // 
             this.addANewClientToolStripMenuItem.Name = "addANewClientToolStripMenuItem";
-            this.addANewClientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addANewClientToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.addANewClientToolStripMenuItem.Text = "Add a New Client";
             this.addANewClientToolStripMenuItem.Click += new System.EventHandler(this.addANewClientToolStripMenuItem_Click);
             // 
             // addARDVToolStripMenuItem
             // 
             this.addARDVToolStripMenuItem.Name = "addARDVToolStripMenuItem";
-            this.addARDVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addARDVToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.addARDVToolStripMenuItem.Text = "Add a RDV";
             this.addARDVToolStripMenuItem.Click += new System.EventHandler(this.addARDVToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // addDentToolStripMenuItem
+            // 
+            this.addDentToolStripMenuItem.Name = "addDentToolStripMenuItem";
+            this.addDentToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.addDentToolStripMenuItem.Text = "Add dent";
+            this.addDentToolStripMenuItem.Click += new System.EventHandler(this.addDentToolStripMenuItem_Click);
             // 
             // affichageToolStripMenuItem
             // 
@@ -852,13 +859,6 @@
             // rDVTableAdapter
             // 
             this.rDVTableAdapter.ClearBeforeFill = true;
-            // 
-            // addDentToolStripMenuItem
-            // 
-            this.addDentToolStripMenuItem.Name = "addDentToolStripMenuItem";
-            this.addDentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addDentToolStripMenuItem.Text = "Add dent";
-            this.addDentToolStripMenuItem.Click += new System.EventHandler(this.addDentToolStripMenuItem_Click);
             // 
             // Home
             // 

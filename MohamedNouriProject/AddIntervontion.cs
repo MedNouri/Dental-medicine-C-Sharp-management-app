@@ -16,14 +16,22 @@ namespace MohamedNouriProject.Resources
     public partial class AddIntervontion : Form
     {
 
-        public String CodeRDV = "35";
+ 
         public int CodeDent = 1;
-        public int CodeClient = 35;
+     
         String connetionString = @"Data Source=DESKTOP-PITV65G;Initial Catalog=dentaldoctor;integrated security=sspi";
         public AddIntervontion()
         {
             InitializeComponent();
 
+          //  MessageBox.Show(Oppointment.iduser);
+            if (Oppointment.EditorAttribute)
+            {
+
+
+               // button1.Text = "Modifier";
+
+            }
 
 
             using (SqlConnection con = new SqlConnection(connetionString))
@@ -66,12 +74,16 @@ namespace MohamedNouriProject.Resources
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertFournisseur(Cout.Text, CodeClient, DateTime.Now , NbreInt.Text, Observations.Text, comboBox2.Text, CodeDent );
+            
+
+                InsertFournisseur(Cout.Text, Oppointment.CodeClientS, DateTime.Now , NbreInt.Text, Observations.Text, comboBox2.Text, CodeDent );
+
+            
         }
 
         
 
-        private void InsertFournisseur(String Cout, int CodeClient, DateTime Date, String Nbre,String observation, String Acte, int CodeDent )
+        private void InsertFournisseur(string Cout, string CodeClient, DateTime Date, String Nbre,String observation, String Acte, int CodeDent )
         {
 
             using (SqlConnection
@@ -121,7 +133,10 @@ namespace MohamedNouriProject.Resources
             }
         }
 
-
+        private void Annuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }

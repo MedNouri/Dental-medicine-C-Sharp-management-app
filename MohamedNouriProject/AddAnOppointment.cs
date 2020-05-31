@@ -18,8 +18,7 @@ namespace MohamedNouriProject
 {
     public partial class AddAnOppointment : Form
     {
-        public Boolean Update = false;
-        public string ID = "0";
+      
 
 
         SqlConnection connection = new SqlConnection("Data Source=DESKTOP-PITV65G;Initial Catalog=dentaldoctor;integrated security=sspi");
@@ -44,7 +43,7 @@ namespace MohamedNouriProject
 
             GetClientLIst();
 
-            if (Update ) {
+            if (Oppointment.EditorAttribute) {
 
 
                 save.Text = "Modifier";
@@ -116,7 +115,7 @@ namespace MohamedNouriProject
 
                         SqlCommand command = new SqlCommand(query, con);
                         command.Parameters.AddWithValue("@CLIENT_comment", comment);
-                        command.Parameters.AddWithValue("@CLIENT_RDV", ID);
+                        command.Parameters.AddWithValue("@CLIENT_RDV", Oppointment.iduser);
                         command.Parameters.AddWithValue("@CLIENT_DateRDV", DateRDV);
                         command.Parameters.AddWithValue("@CLIENT_time", time);
                         command.Parameters.AddWithValue("@CLIENT_ID", ClientID);
@@ -126,7 +125,7 @@ namespace MohamedNouriProject
                         if (command.ExecuteNonQuery() == 0)
                         throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
                     else
-                        MessageBox.Show("Created");
+                        MessageBox.Show("Updated");
                     this.Close();
                 }
                 catch (Exception ex)
@@ -151,7 +150,7 @@ namespace MohamedNouriProject
         {
 
 
-            if (Update)
+            if (Oppointment.EditorAttribute)
             {
 
                 UpdateData( comment,  ClientID,  DateRDV,  time);
@@ -248,7 +247,7 @@ namespace MohamedNouriProject
 
         private void Annuler_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

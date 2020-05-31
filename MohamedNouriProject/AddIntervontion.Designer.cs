@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.NbreInt = new System.Windows.Forms.TextBox();
@@ -44,11 +45,13 @@
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Annuler = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel8
@@ -72,7 +75,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(800, 468);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(329, 468);
             this.tableLayoutPanel8.TabIndex = 4;
             // 
             // tableLayoutPanel4
@@ -213,7 +216,7 @@
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Location = new System.Drawing.Point(13, 161);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(762, 49);
+            this.checkedListBox.Size = new System.Drawing.Size(305, 49);
             this.checkedListBox.TabIndex = 4;
             this.checkedListBox.SelectedIndexChanged += new System.EventHandler(this.checkedListBox_SelectedIndexChanged);
             // 
@@ -222,9 +225,9 @@
             this.button1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(186, 459);
+            this.button1.Location = new System.Drawing.Point(12, 453);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(305, 44);
+            this.button1.Size = new System.Drawing.Size(264, 45);
             this.button1.TabIndex = 7;
             this.button1.Text = "Ajouter";
             this.button1.UseVisualStyleBackColor = false;
@@ -232,18 +235,23 @@
             // 
             // Annuler
             // 
-            this.Annuler.Location = new System.Drawing.Point(186, 509);
+            this.Annuler.Location = new System.Drawing.Point(12, 503);
             this.Annuler.Name = "Annuler";
-            this.Annuler.Size = new System.Drawing.Size(305, 41);
+            this.Annuler.Size = new System.Drawing.Size(264, 42);
             this.Annuler.TabIndex = 6;
             this.Annuler.Text = "Annuler";
             this.Annuler.UseVisualStyleBackColor = true;
+            this.Annuler.Click += new System.EventHandler(this.Annuler_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // AddIntervontion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 572);
+            this.ClientSize = new System.Drawing.Size(329, 566);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Annuler);
             this.Controls.Add(this.tableLayoutPanel8);
@@ -259,6 +267,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -281,5 +290,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TextBox NbreInt;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

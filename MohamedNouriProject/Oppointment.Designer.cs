@@ -45,7 +45,9 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.CodeClient = new System.Windows.Forms.TextBox();
-            this.exporter = new System.Windows.Forms.Button();
+            this.totlaNumbre = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,9 +77,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panel1.Controls.Add(this.totlaNumbre);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.exporter);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -290,21 +294,48 @@
             this.CodeClient.TabIndex = 0;
             this.CodeClient.TextChanged += new System.EventHandler(this.telNumber_TextChanged);
             // 
-            // exporter
+            // totlaNumbre
             // 
-            this.exporter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exporter.BackColor = System.Drawing.Color.RoyalBlue;
-            this.exporter.FlatAppearance.BorderSize = 0;
-            this.exporter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exporter.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exporter.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exporter.Location = new System.Drawing.Point(1082, 13);
-            this.exporter.Name = "exporter";
-            this.exporter.Size = new System.Drawing.Size(83, 29);
-            this.exporter.TabIndex = 8;
-            this.exporter.Text = "Exporter ";
-            this.exporter.UseVisualStyleBackColor = false;
-            this.exporter.Click += new System.EventHandler(this.exporter_Click);
+            this.totlaNumbre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totlaNumbre.AutoSize = true;
+            this.totlaNumbre.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totlaNumbre.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.totlaNumbre.Location = new System.Drawing.Point(923, 23);
+            this.totlaNumbre.Name = "totlaNumbre";
+            this.totlaNumbre.Size = new System.Drawing.Size(30, 22);
+            this.totlaNumbre.TabIndex = 9;
+            this.totlaNumbre.Text = "00";
+            this.totlaNumbre.Click += new System.EventHandler(this.totlaNumbre_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(981, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Actualiser";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(1074, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Exporter ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Oppointment
             // 
@@ -350,6 +381,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox CodeClient;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button exporter;
+        private System.Windows.Forms.Label totlaNumbre;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
